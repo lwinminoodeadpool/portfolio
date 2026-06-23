@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 const skillCategories = [
   {
@@ -23,34 +23,53 @@ const skillCategories = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0 }
+};
+
 export default function Skills() {
   return (
-    <section className="py-20 px-4 md:px-8 max-w-4xl mx-auto border-t border-gray-100">
+    <section className="py-20 px-4 md:px-8 max-w-4xl mx-auto border-t border-white/10 overflow-hidden">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-100px" }}
       >
-        <h2 className="text-3xl font-bold text-gray-900 mb-12 tracking-tight">Skills & Expertise</h2>
+        <motion.h2 variants={itemVariants} className="text-3xl font-bold text-white mb-12 tracking-tight">
+          Skills & Expertise
+        </motion.h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {skillCategories.map((category, index) => (
-            <div key={index}>
-              <h3 className="text-lg font-medium text-gray-900 mb-4 pb-2 border-b border-gray-100">
+            <motion.div variants={itemVariants} key={index}>
+              <h3 className="text-lg font-medium text-white mb-4 pb-2 border-b border-white/10">
                 {category.title}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, i) => (
-                  <span 
+                  <motion.span 
                     key={i} 
-                    className="px-4 py-2 bg-gray-50 text-gray-700 text-sm rounded-lg border border-gray-100 hover:bg-gray-100 transition-colors"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-4 py-2 bg-white/5 text-gray-200 text-sm rounded-lg border border-white/10 hover:bg-white/10 cursor-default transition-colors"
                   >
                     {skill}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </motion.div>

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 const experiences = [
   {
@@ -45,25 +45,41 @@ const experiences = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100 } }
+};
+
 export default function Experience() {
   return (
-    <section className="py-20 px-4 md:px-8 max-w-4xl mx-auto border-t border-gray-100">
+    <section className="py-20 px-4 md:px-8 max-w-4xl mx-auto border-t border-white/10 overflow-hidden">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-100px" }}
       >
-        <h2 className="text-3xl font-bold text-gray-900 mb-12 tracking-tight">Work Experience</h2>
+        <motion.h2 variants={itemVariants} className="text-3xl font-bold text-white mb-12 tracking-tight">
+          Work Experience
+        </motion.h2>
         
         <div className="space-y-12">
           {experiences.map((exp, index) => (
-            <div key={index} className="relative pl-8 md:pl-0">
-              {/* Timeline dot for desktop could be added here, keeping it minimalist for now */}
+            <motion.div variants={itemVariants} key={index} className="relative pl-8 md:pl-0 group">
               <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-4">
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900">{exp.role}</h3>
-                  <p className="text-gray-500 font-medium">{exp.company}</p>
+                  <h3 className="text-xl font-semibold text-white group-hover:text-blue-300 transition-colors">{exp.role}</h3>
+                  <p className="text-gray-300 font-medium">{exp.company}</p>
                 </div>
                 <div className="mt-2 md:mt-0 text-sm text-gray-400 font-medium tracking-wide">
                   {exp.period}
@@ -71,13 +87,13 @@ export default function Experience() {
               </div>
               <ul className="list-none space-y-3">
                 {exp.points.map((point, i) => (
-                  <li key={i} className="text-gray-600 flex items-start">
-                    <span className="mr-3 text-gray-300 mt-1.5">•</span>
+                  <li key={i} className="text-gray-300 flex items-start">
+                    <span className="mr-3 text-white/20 mt-1.5">•</span>
                     <span className="leading-relaxed">{point}</span>
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
       </motion.div>

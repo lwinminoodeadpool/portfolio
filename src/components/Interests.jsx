@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Car, Video, Music, Utensils, Brain } from 'lucide-react';
 
-const defaultInterests = [
+const myInterests = [
   {
     title: "Cars",
     description: "Passionate about automotive engineering, design, and the thrill of driving.",
@@ -29,36 +29,53 @@ const defaultInterests = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+};
+
 export default function Interests() {
   return (
-    <section className="py-20 px-4 md:px-8 max-w-5xl mx-auto border-t border-gray-100">
+    <section className="py-20 px-4 md:px-8 max-w-5xl mx-auto border-t border-white/10 overflow-hidden">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-100px" }}
       >
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">The Other Side</h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">The Other Side</motion.h2>
+          <motion.p variants={itemVariants} className="text-lg text-gray-300 max-w-2xl mx-auto">
             Beyond the screen and the code, here are some of the things that keep me inspired and energized.
-          </p>
+          </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {defaultInterests.map((interest, index) => {
+          {myInterests.map((interest, index) => {
             const Icon = interest.icon;
             return (
               <motion.div
+                variants={itemVariants}
                 key={index}
-                whileHover={{ y: -5 }}
-                className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="bg-white/5 p-8 rounded-2xl border border-white/10 shadow-sm hover:border-white/30 transition-colors cursor-default"
               >
-                <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
-                  <Icon className="w-6 h-6 text-gray-700" />
+                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
+                  <Icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{interest.title}</h3>
-                <p className="text-gray-500 leading-relaxed">
+                <h3 className="text-xl font-semibold text-white mb-3">{interest.title}</h3>
+                <p className="text-gray-300 leading-relaxed">
                   {interest.description}
                 </p>
               </motion.div>

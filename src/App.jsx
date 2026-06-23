@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { User, Sparkles } from 'lucide-react';
 import Hero from './components/Hero';
 import Experience from './components/Experience';
@@ -12,18 +12,20 @@ function App() {
   const [isOtherSide, setIsOtherSide] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-gray-200">
+    <div className="min-h-screen bg-[#2F4156] font-sans text-white selection:bg-white/20">
       
       {/* Sticky Navigation / Toggle */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#2F4156]/80 backdrop-blur-md border-b border-white/10">
         <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="font-bold text-lg tracking-tight">LMO</div>
           
-          <div className="bg-gray-100 p-1 rounded-full flex items-center shadow-inner">
+          <div className="bg-black/20 backdrop-blur-xl border border-white/5 p-1 rounded-full flex items-center shadow-inner relative">
             <button
               onClick={() => setIsOtherSide(false)}
-              className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                !isOtherSide ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+              className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                !isOtherSide 
+                  ? 'bg-white/15 border border-white/10 text-white shadow-[0_4px_12px_rgba(0,0,0,0.1)] backdrop-blur-md' 
+                  : 'text-gray-400 hover:text-white border border-transparent'
               }`}
             >
               <User className="w-4 h-4" />
@@ -31,8 +33,10 @@ function App() {
             </button>
             <button
               onClick={() => setIsOtherSide(true)}
-              className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                isOtherSide ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+              className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                isOtherSide 
+                  ? 'bg-white/15 border border-white/10 text-white shadow-[0_4px_12px_rgba(0,0,0,0.1)] backdrop-blur-md' 
+                  : 'text-gray-400 hover:text-white border border-transparent'
               }`}
             >
               <Sparkles className="w-4 h-4" />
