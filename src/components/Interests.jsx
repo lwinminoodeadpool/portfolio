@@ -1,36 +1,31 @@
 import { motion } from 'framer-motion';
-import { Camera, Gamepad2, Plane, Coffee, Music, BookOpen } from 'lucide-react';
+import { Car, Video, Music, Utensils, Brain } from 'lucide-react';
 
 const defaultInterests = [
   {
-    title: "Photography",
-    description: "Capturing moments and exploring visual storytelling through my camera lens.",
-    icon: Camera
+    title: "Cars",
+    description: "Passionate about automotive engineering, design, and the thrill of driving.",
+    icon: Car
   },
   {
-    title: "Gaming",
-    description: "Strategic problem solving and immersing in interactive digital worlds.",
-    icon: Gamepad2
+    title: "Vlogs",
+    description: "Creating and sharing video content to document experiences and tell stories.",
+    icon: Video
   },
   {
-    title: "Traveling",
-    description: "Exploring new cultures, architectures, and expanding my worldview.",
-    icon: Plane
-  },
-  {
-    title: "Coffee Culture",
-    description: "Appreciating the craft of specialty coffee and cafe atmospheres.",
-    icon: Coffee
-  },
-  {
-    title: "Music Production",
-    description: "Experimenting with sound design and creating digital music tracks.",
+    title: "Music & Guitars",
+    description: "Playing the guitar and exploring rhythm, melodies, and musical expression.",
     icon: Music
   },
   {
-    title: "Reading",
-    description: "Continuously learning through technology blogs, sci-fi, and design books.",
-    icon: BookOpen
+    title: "Foods",
+    description: "Exploring culinary delights, tasting new dishes, and appreciating gastronomy.",
+    icon: Utensils
+  },
+  {
+    title: "Artificial Intelligence",
+    description: "Fascinated by AI advancements, machine learning, and the future of tech.",
+    icon: Brain
   }
 ];
 
@@ -47,15 +42,14 @@ export default function Interests() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">The Other Side</h2>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto">
             Beyond the screen and the code, here are some of the things that keep me inspired and energized.
-            (Placeholders - to be customized later)
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {defaultInterests.map((interest, index) => {
             const Icon = interest.icon;
             return (
-              <motion.div 
+              <motion.div
                 key={index}
                 whileHover={{ y: -5 }}
                 className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all"

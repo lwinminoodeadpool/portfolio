@@ -17,7 +17,7 @@ function App() {
       {/* Sticky Navigation / Toggle */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="font-bold text-lg tracking-tight">LMO.</div>
+          <div className="font-bold text-lg tracking-tight">LMO</div>
           
           <div className="bg-gray-100 p-1 rounded-full flex items-center shadow-inner">
             <button
